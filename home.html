@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+      .heading{
+        color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <div id="root2"></div>
+
+
+
+    <script type="text/babel">
+
+            // Component
+            const Hello = (props) => {
+            return (
+            <div className="heading" >
+                 <h1>{props.message}</h1>
+                 <p>{props.subtitle}</p>
+                    {console.log("toto")
+                    // DO shit here
+                    }
+            </div>
+            )
+            }
+
+            // Rendu dans le DOM
+                ReactDOM.render(
+                <Hello message = "Hello Oty" subtitle="from React ! "/>,
+                document.getElementById('root')
+                );
+                var titi = 'green';
+
+                class HelloReact extends React.Component{
+                            //Abscolutely needed if we use props in the JSX component, if not could skip
+                            constructor(props){
+                                                super(props);
+                                                console.log(this.props)
+                            }
+                            
+
+                            render() {         
+                                                return (
+                                                 <div>   
+                                                    <h1>Yo</h1>
+                                                    <p style={{color: "green", backgroundColor: titi}}>{this.props.name}</p>
+                                                </div>
+                                                )
+                                            }
+                            }
+
+                            ReactDOM.render(
+                                                            // attribut cle/valeur == props
+                                                            <HelloReact name="Jimmy" />,
+                                                            document.getElementById('root2')
+                            );
+
+      </script>
+  </body>
+</html>

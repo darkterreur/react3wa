@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+      .heading{
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+          
+                //console.log('time is : ' + heure)
+                const Clock = (props) => {
+                    return(
+                        <div id="App">
+                            <p> Heure</p>
+                            <p> {props.time}</p>
+                        </div>
+                    )
+                }
+
+
+        
+
+                           // Rendu dans le DOM
+            let RenderTime = (t) => {
+                ReactDOM.render(
+                                <Clock time={t}/>,
+                                document.getElementById('root')
+                 );
+            }
+
+            setInterval( ()=> { 
+                                let heure = (new Date).toLocaleTimeString()
+                                RenderTime(heure)
+                                console.log("executing setInterval")},
+                            1000);
+
+
+
+ 
+    </script>
+</body>
+</html>
