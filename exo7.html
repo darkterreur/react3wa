@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+      .heading{
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+            var users = ['otymix@hotmail.com', 'test@mail.fr']
+
+            class UserForm extends React.Component {
+                                constructor(props) {
+                                                super(props);
+                                                this.state = { email: '',
+                                                               pwd: ''};
+                                }
+
+                                handleChange = (event, input) => {
+                                    console.log(event.target.value)
+                                    if(input === 'email')
+                                    this.setState({ email: event.target.value})
+
+                                    if(input === 'pwd')
+                                    this.setState({ pwd: event.target.value})   
+                                }
+
+                                
+
+                                handleSubmit = (event) => {      
+                                       event.preventDefault();
+                                       const email_exist = users.includes(this.state.email)
+                                       console.log('email_exist ', email_exist)
+                                       console.log( 'Email is', this.state.email)
+                                       console.log( `Pwd is : ${this.state.pwd}`)
+                                       if(!email_exist && (this.state.pwd.length > 4 )) {
+                                                    users.push(this.state.email)
+                                                    }
+                                        else alert("User exists already or pwd is less than 4 chars")
+                                 }
+
+
+                                render() {
+                                        return (
+                                            <div className="container">
+                                                <form onSubmit={e => this.handleSubmit(e)}>
+                                                    <label>
+                                                        Enter Email:
+                                                        <input type="email" required placeholder="Your eamil here" value={this.state.email} onChange={ e => this.handleChange(e, 'email')} />
+                                                    </label>
+                                                    <label>
+                                                        Enter Password:
+                                                        <input type="password" required placeholder="Your password here" value={this.state.pwd} onChange={e => this.handleChange(e, 'pwd')} />
+                                                    </label>
+                                                    <input type="submit" value="Add" />
+                                                </form>
+                                        </div>
+                                );
+                                }
+            }
+      
+
+          ReactDOM.render(
+                            <div>
+                            <UserForm />
+                            </div>,
+
+                            document.getElementById('root')
+                            );
+
+ 
+    </script>
+</body>
+</html>
